@@ -4,11 +4,6 @@
 
 //variale//
 
-$backgraund: blue;
-main { 
-      background-color: 
-      $backgraund;
-}
 h4  {
       color: $color-fonts;
 }
@@ -73,12 +68,19 @@ main section article img {
       margin: 25px;
 }
 
+@mixin img-size($alto, $ancho) {
+      height: $alto;
+      width: $ancho;
+}
+
+      
 
 .img-main {
+      @include img-size(200px,200px );
       display: flex;
       align-items: center;
       align-content: center;
-      width: 200px;
+      
       padding: auto;
       border-radius: 10px;
       box-shadow: 0 0 20px 0;
@@ -101,17 +103,10 @@ main section article img {
 
 
 .boton {
-      display: flex;
-      margin-left: auto;
-      margin-right: auto;
-      font-size: 15px;
-      padding: 10px 20px;
-      border-radius: 10px;
-      text-decoration: none;
-      color: rgb(0, 140, 255);
-      font-size: "Anima", cursive;
-      background-color: rgb(255, 255, 255);
+      @extend .btn;
+      color:white;
 }
+
 
 
 .container {
@@ -130,10 +125,14 @@ main section article img {
 
 }
 
-
+$estilos: ( 
+      azul: #0033ff,
+      botones: #000000,
+      color-nav : #0094f7,
+);
 #footer {
       width: 100%;
-      background-color: rgb(0, 0, 0);
+      background-color: map-get($estilos , botones);
       color: rgb(255, 123, 0);
       padding: 20px 20px;
       background-size: cover;
@@ -151,49 +150,52 @@ body {
       color: #0094f7;
       font-size: 20px;
       font-family: 'Arima', cursive;
-
-      
-
-
 }
+
 .dropdown-menu.show {
       background-color: #000000;
       color: #0033ff;
       
 }
+
 .dropdown-item {
       color: rgb(0, 234, 255);
       font-family: 'Arima', cursive;
 
+
+}
+.item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 50px;
 }
 
-
-
+.grid-container {
+      display: grid;
+      grid-template-columns: 25% 25% 25% 25%;
+      padding: 70px;
+}
 
 
 a {
       text-decoration: none;
       color: rgb(255, 128, 0);
       cursor: pointer;
-
 }
-
-
-
-
 
 nav a:hover {
       color: rgb(232, 185, 98);
-
 }
 
 .container {
       display: flex;
+      justify-content: center;
       align-items: center;
       max-width: 1400px;
       margin: auto;
 }
-
 
 /*css grid responsive/*
 /*mobile*/
@@ -204,8 +206,7 @@ nav a:hover {
       }
 
       .container { 
-            flex-direction: column;
-            
+            flex-direction: column; 
       }
 
       .img-main {
@@ -217,7 +218,6 @@ nav a:hover {
       .boton {
             margin-right: auto;
             margin-left: auto;
-
       }
 
       body {
@@ -229,8 +229,7 @@ nav a:hover {
 @media screen and (max-width:768px) {
 
       .container {
-            flex-direction: column;
-            
+            flex-direction: column;  
       }
 
       .img-main {
@@ -240,7 +239,6 @@ nav a:hover {
       .boton {
             margin-right: auto;
             margin-left: auto;
-
       }
 
       body {
@@ -248,11 +246,6 @@ nav a:hover {
             height: 100%;
       }
 }
-
-
-
-
-
 
 body-contact {
       color: #fff;
